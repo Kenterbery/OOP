@@ -14,7 +14,7 @@ public class lab1 {
        short a = sc.nextShort();
        System.out.println("b: ");
        short b = sc.nextShort();
-
+	//comment
        double result = 0;
 
        try {
