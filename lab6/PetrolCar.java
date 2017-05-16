@@ -1,7 +1,7 @@
 package lab6;
 
 /**
- * Created by kenterbery on 05.05.17.
+ * Клас описує машини на бензині, наслідує клас Car
  */
 public class PetrolCar extends Car {
 
@@ -12,11 +12,19 @@ public class PetrolCar extends Car {
         this.fuel = fuel;
     }
 
+    /**
+     * Повертає витрати пального
+     * @return Витрати пального
+     */
     @Override
     public double getFuel() {
         return fuel;
     }
 
+    /**
+     * Повертає строкове представлення машини
+     * @return Строкове представлення машини
+     */
     @Override
     public String toString() {
         return "Petrolcar("+getName()+')';
