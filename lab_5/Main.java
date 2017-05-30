@@ -14,7 +14,7 @@ public class Main {
                     .beginSentence()
                         .addWord("I").addWord("wrote").addWord("this").addWord("text")
                         .addWord("for").addWord("testing").addWord("my").addWord("program")
-                    .endSentence('.')
+                    .endSentence('!')
                     .beginSentence()
                         .addWord("For").addWord("example").addDelimiter(',').addWord("let's")
                         .addWord("take").addWord("some")
