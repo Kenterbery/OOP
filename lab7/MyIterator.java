@@ -4,9 +4,6 @@ import lab6.Car;
 
 import java.util.Iterator;
 
-/**
- * Created by kenterbery on 30.05.17.
- */
 public class MyIterator implements Iterator<Car> {
 
     private Node current;
@@ -22,8 +19,10 @@ public class MyIterator implements Iterator<Car> {
 
     @Override
     public Car next() {
-        Car next = current.getValue();
-        current = current.next();
-        return next;
+        Car car = current.getValue();
+        if (hasNext()) {
+            this.current = current.next();
+        }
+        return car;
     }
 }

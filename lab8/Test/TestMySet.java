@@ -42,6 +42,8 @@ public class TestMySet {
         assertTrue(this.taxis.size() == 0);
         taxis.add(car);
         assertTrue(this.taxis.size() == 1);
+        taxis.remove(car);
+        assertTrue(taxis.size() == 0);
     }
 
     @Test
@@ -49,6 +51,8 @@ public class TestMySet {
         assertTrue(taxis.isEmpty());
         taxis.add(car);
         assertFalse(taxis.isEmpty());
+        taxis.remove(car);
+        assertTrue(taxis.isEmpty());
     }
 
     @Test
@@ -63,7 +67,7 @@ public class TestMySet {
         assertTrue(taxis.add(car));
         taxis.add(car);
         assertFalse(taxis.add(car));
-        assertTrue(taxis.add(null));
+        assertFalse(taxis.add(null));
         System.out.println();
     }
 
@@ -88,13 +92,12 @@ public class TestMySet {
         assertTrue(taxis.isEmpty());
     }
 
-    @Ignore
     @Test
     public void testRemoveAll() {
         taxis.addAll(cars);
         assertTrue(taxis.removeAll(cars));
         taxis.removeAll(cars);
-        //assertFalse(taxis.removeAll(cars));
+        assertFalse(taxis.removeAll(cars));
     }
 
     @Test
@@ -125,10 +128,10 @@ public class TestMySet {
         Car[] arrayTest = new Car[taxis.size()];
         array = taxis.toArray(array);
         int counter = 0;
-        for (Object plane : taxis.toArray()) {
+        for (Object car : taxis.toArray()) {
             arrayTest[counter++] = (Car) car;
         }
-        assertEquals(arrayTest, array);
+        assertArrayEquals(arrayTest, array);
     }
 
     @Test
@@ -136,7 +139,7 @@ public class TestMySet {
         taxis.add(car);
         Iterator<Car> iterator = taxis.iterator();
         assertTrue(iterator.next() == car);
-        assertTrue(iterator.hasNext());
+        assertFalse(iterator.hasNext());
     }
     public static void main(String[] args) throws Exception {
         JUnitCore runner = new JUnitCore();

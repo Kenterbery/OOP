@@ -1,6 +1,8 @@
 package lab7;
 
 import lab6.Car;
+import lab8.Test.EmptySetException;
+import lab8.Test.NullParameterException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -17,13 +19,6 @@ public class MySet implements Set<Car>{
 
     public MySet(Car car) {
         add(car);
-    }
-
-    public Node getHead(){
-        return head;
-    }
-    public Node getTail() {
-        return tail;
     }
 
     public MySet(Car... cars) {
@@ -64,6 +59,15 @@ public class MySet implements Set<Car>{
     @NotNull
     @Override
     public Object[] toArray() {
+        try {
+            if (isEmpty()) {
+                throw new EmptySetException("The set is empty.");
+            }
+        }
+        catch (EmptySetException ex) {
+            System.out.println(ex.getMessage());
+            return new Object[0];
+        }
         Object[] carArray = new Object[size];
         Node current = head;
         for (int i = 0; i < size; i++) {
@@ -90,6 +94,15 @@ public class MySet implements Set<Car>{
 
     @Override
     public boolean add(Car car) {
+        try{
+            if (car == null) {
+                throw new NullParameterException("'null' as parameter");
+            }
+        }
+        catch (NullParameterException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
         if (this.contains(car)) {
             return false;
         }
@@ -97,7 +110,6 @@ public class MySet implements Set<Car>{
         if (tail == null) {
             head = node;
             tail = node;
-            head.setNext(tail);
         }
         else {
             tail.setNext(node);
@@ -108,10 +120,20 @@ public class MySet implements Set<Car>{
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(Object o){
+        try{
+            if (isEmpty()) {
+                throw new EmptySetException("The set is empty.");
+            }
+        }
+        catch (EmptySetException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
         if (contains(o)) {
             if (head.getValue() == o) {
                 head = head.next();
+                size--;
                 return true;
             }
             Node current = head;
